@@ -11,10 +11,11 @@ class ListsController < ApplicationController
     # 3. データをデータベースに保存するためのsaveメソッド実行
     if @list.save
     # 4. トップ画面へリダイレクト
+    flash[:notice]="投稿が成功しました"
     redirect_to list_path(@list.id)
-   else
+    else
     render :new
-   end 
+    end
   end
 
   def index
@@ -28,7 +29,7 @@ class ListsController < ApplicationController
   def edit
     @list=List.find(params[:id])
   end
-  
+
   def update
     list=List.find(params[:id])
     list.update(list_params)
